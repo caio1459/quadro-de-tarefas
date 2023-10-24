@@ -1,4 +1,4 @@
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import Modal from "react-modal";
 import { FormContainer } from "./styles";
 
@@ -8,8 +8,11 @@ interface PropsModal {
 }
 
 export function CustomModal(props: PropsModal) {
+    const [titulo, setTitulo] = useState("");
+    const [descricao, setDescricao] = useState("");
+
     function criarTarefa(event: FormEvent) {
-        
+        event.preventDefault();
     }
     return (
         <Modal
@@ -29,8 +32,17 @@ export function CustomModal(props: PropsModal) {
             <FormContainer onSubmit={criarTarefa}>
                 <h2>Cadastrar Tarefa</h2>
 
-                <input type="text" placeholder="Título" />
-                <textarea placeholder="Descriçao" />
+                <input
+                    type="text"
+                    placeholder="Título"
+                    value={titulo}
+                    onChange={(event) => setTitulo(event.target.value)}
+                />
+                <textarea
+                    placeholder="Descriçao"
+                    value={descricao}
+                    onChange={(event) => setDescricao(event.target.value)}
+                />
 
                 <button type="submit">Cadastrar</button>
             </FormContainer>
